@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_reference: 2020-04-13
+  suspected: 1
+  confirmed: 1
+  home_isolation: 1
+  hospitalized: 1
+  discarded: 1
+  deaths: 1
+  city: one
+
+two:
+  date_reference: 2020-04-13
+  suspected: 1
+  confirmed: 1
+  home_isolation: 1
+  hospitalized: 1
+  discarded: 1
+  deaths: 1
+  city: two

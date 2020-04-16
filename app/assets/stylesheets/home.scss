@@ -1,0 +1,44 @@
+@mixin style-text-primary {
+  box-sizing: border-box;
+  color: rgb(93, 120, 255);
+  display: block;
+  font-family: "Circular Std", "Roboto", sans-serif;
+  font-weight: bold;
+  height: 46px;
+  line-height: 46px;
+  text-rendering: optimizeLegibility;
+  text-align: center;
+}
+
+.number-total {
+  @include style-text-primary;
+  font-size: 40px;
+}
+
+.text-total {
+  @include style-text-primary;
+  -webkit-box-direction: normal;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  height: 25px;
+color: rgb(23, 43, 62);
+font-size: 20px;
+visibility: visible;
+}
+
+header {
+  h1 { 
+    @include style-text-primary;
+    font-size: 23px;
+  }
+
+}
+
+span {
+  font-family: "Circular Std", "Roboto" sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+.card {
+  border-radius: 1.0rem;
+}

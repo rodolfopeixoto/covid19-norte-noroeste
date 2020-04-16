@@ -1,0 +1,20 @@
+
+<%= simple_form_for(@covid_information) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-group">
+    <%= f.input :date_reference %>
+    <%= f.input :suspected %>
+    <%= f.input :confirmed %>
+    <%= f.input :home_isolation %>
+    <%= f.input :hospitalized %>
+    <%= f.input :discarded %>
+    <%= f.input :deaths %>
+    <%= f.association :city %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit %>
+  </div>
+<% end %>

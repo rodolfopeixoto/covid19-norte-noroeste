@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date reference:</strong>
+  <%= @covid_information.date_reference %>
+</p>
+
+<p>
+  <strong>Suspected:</strong>
+  <%= @covid_information.suspected %>
+</p>
+
+<p>
+  <strong>Confirmed:</strong>
+  <%= @covid_information.confirmed %>
+</p>
+
+<p>
+  <strong>Home isolation:</strong>
+  <%= @covid_information.home_isolation %>
+</p>
+
+<p>
+  <strong>Hospitalized:</strong>
+  <%= @covid_information.hospitalized %>
+</p>
+
+<p>
+  <strong>Discarded:</strong>
+  <%= @covid_information.discarded %>
+</p>
+
+<p>
+  <strong>Deaths:</strong>
+  <%= @covid_information.deaths %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @covid_information.city_id %>
+</p>
+
+<%= link_to 'Edit', edit_covid_information_path(@covid_information) %> |
+<%= link_to 'Back', covid_informations_path %>

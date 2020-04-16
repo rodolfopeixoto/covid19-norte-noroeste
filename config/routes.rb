@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :covid_informations
+  resources :cities
   devise_for :users
-  get 'graphics/index'
-  root to: "graphics#index"
+  root to: "home#index"
 end

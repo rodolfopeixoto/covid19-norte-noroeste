@@ -23,9 +23,7 @@ gem 'roo', '~> 2.8.0'
 gem 'devise'
 gem 'bootstrap-material-design'
 gem 'simple_form'
-gem 'materialize-sass', '~> 1.0.0'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'chartkick'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
