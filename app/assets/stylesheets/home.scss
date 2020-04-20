@@ -27,18 +27,48 @@ visibility: visible;
 }
 
 header {
+
   h1 { 
     @include style-text-primary;
-    font-size: 23px;
+    font-size: 21px;
   }
 
 }
 
-span {
-  font-family: "Circular Std", "Roboto" sans-serif;
-  font-size: 21px;
-  font-weight: 400;
+.subtitle {
+    color: #5d78ff;
+    text-rendering: optimizeLegibility;
+    font-family: "Circular Std", "Roboto" sans-serif;
+    font-weight: 600;
 }
+.span {
+    color: rgb(61, 61, 61);
+    text-rendering: optimizeLegibility;
+    font-family: "Circular Std", "Roboto" sans-serif;
+    font-weight: 400;
+}
+
+.text-orange {
+  color: #fcb243;
+}
+
+.text-yellow{
+  color: #ffc107;
+}
+
+.text-green {
+  color: #28b63f;
+}
+
+
+.text-red {
+  color: #dd0000;
+}
+
+.text-yellow-light {
+  color: #ffc260;
+}
+
 .card {
   border-radius: 1.0rem;
 }

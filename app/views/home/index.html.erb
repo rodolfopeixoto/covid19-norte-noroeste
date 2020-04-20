@@ -4,7 +4,7 @@
     <div class="col-4">
       <div class="card">
         <div class="card-body">
-          <span class="number-total"><%= @total_suspected %></span>
+          <span class="number-total text-yellow"><%= @total_suspected %></span>
           <span class="text-total">Casos Suspeitos</span>
         </div>
       </div>
@@ -13,7 +13,7 @@
     <div class="col-4">
       <div class="card">
         <div class="card-body">
-          <span class="number-total"><%= @total_confirmed %></span>
+          <span class="number-total text-orange"><%= @total_confirmed %></span>
           <span class="text-total">Casos Confirmados </span>
         </div>
       </div>
@@ -22,7 +22,7 @@
     <div class="col-4">
       <div class="card">
         <div class="card-body">
-          <span class="text-danger number-total"><%= @total_deaths %></span>
+          <span class="number-total text-red"><%= @total_deaths %></span>
           <span class="text-total">Óbitos </span>
         </div>
       </div>
@@ -33,7 +33,7 @@
     <div class="col-4 mt-3">  
       <div class="card">
         <div class="card-body">
-          <span class="number-total"><%= @total_hospitalized %></span>
+          <span class="number-total text-yellow-light"><%= @total_hospitalized %></span>
           <span class="text-total">Hospitalizados </span>
         </div>
       </div>
@@ -42,7 +42,7 @@
     <div class="col-4 mt-3">  
       <div class="card">
         <div class="card-body">
-          <span class="number-total"><%= @total_home_isolation %></span>
+          <span class="number-total text-green"><%= @total_home_isolation %></span>
           <span class="text-total">Isolados em casa </span>
         </div>
       </div>
@@ -70,7 +70,9 @@
       
     <div class="card-header">Casos confirmados por cidades</div>
        <div class="card-body">
-         <%= column_chart CovidInformation.includes(:city).where(date_reference: '01/03/2020'.to_date..Time.current).group("cities.id").select("cities.name, SUM(covid_informations.confirmed) AS sum_confirmed").order("cities.id").pluck("cities.name, SUM(covid_informations.confirmed)"), colors: ["#ff9800", "#666"]%>
+         <%= column_chart City.joins(:covid_informations)
+                              .where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } )
+                              .pluck("cities.name, covid_informations.confirmed"), colors: ["#ff2100", "#666"] %>
        </div>
     </div>
 
@@ -79,9 +81,11 @@
     <div class="col-6">
       
     <div class="card">
-    <div class="card-header">Casos confirmados</div>
+    <div class="card-header">Casos suspeitos por cidades</div>
        <div class="card-body">
-         <%= column_chart CovidInformation.where(date_reference: '01/03/2020'.to_date..Time.current).group("date_reference").select("date_reference, SUM(confirmed) AS sum_confirmed").order("date_reference").pluck("date_reference, SUM(confirmed)") %>
+         <%= column_chart City.joins(:covid_informations)
+                              .where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } )
+                              .pluck("cities.name, covid_informations.suspected"), colors: ["#ff9800", "#666"] %>
 
        </div>
     </div>
@@ -105,18 +109,31 @@
 
        
     <div class="card">
+
+       <div class="card-header">
+         Casos suspeitos de COVID-19 na Região Norte e Noroeste
+       </div>
+
        <div class="card-body">
-         <%= pie_chart CovidInformation.includes(:city).where(date_reference: '01/03/2020'.to_date..Time.current).group("cities.id").select("cities.name, SUM(covid_informations.confirmed) AS sum_confirmed").order("cities.id").pluck("cities.name, SUM(covid_informations.confirmed)") %>
+         <%= line_chart CovidInformation.joins(:city).
+                 group("covid_informations.date_reference").
+                 order("covid_informations.date_reference").
+                 sum(:suspected) %>
        </div>
     </div>
 
     </div>
 
     <div class="col-6">
-      
-    <div class="card">
-       <div class="card-body">
-         <%= line_chart CovidInformation.where(date_reference: '01/03/2020'.to_date..Time.current).group("date_reference").select("date_reference, SUM(confirmed) AS sum_confirmed").order("date_reference").pluck("date_reference, SUM(confirmed)") %>
+      <div class="card">
+        <div class="card-header">
+        Casos confirmados de COVID-19 na Região Norte e Noroeste Fluminense
+        </div>
+         <div class="card-body">
+           <%= line_chart CovidInformation.joins(:city).
+                 group("covid_informations.date_reference").
+                 order("covid_informations.date_reference").
+                 sum(:confirmed) %>
 
        </div>
     </div>
