@@ -37,8 +37,8 @@
 
 <p>
   <strong>City:</strong>
-  <%= @covid_information.city_id %>
+  <%= @covid_information.city.name %>
 </p>
 
-<%= link_to 'Edit', edit_covid_information_path(@covid_information) %> |
-<%= link_to 'Back', covid_informations_path %>
+<%= link_to 'Editar', edit_covid_information_path(@covid_information) %> |
+<%= link_to 'Voltar', covid_informations_path %>

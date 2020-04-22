@@ -1,28 +1,21 @@
 class CovidInformationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_covid_information, only: [:show, :edit, :update, :destroy]
 
-  # GET /covid_informations
-  # GET /covid_informations.json
   def index
-    @covid_informations = CovidInformation.all
+    @covid_informations = CovidInformation.includes(:city).order("date_reference desc").limit(30)
   end
 
-  # GET /covid_informations/1
-  # GET /covid_informations/1.json
   def show
   end
 
-  # GET /covid_informations/new
   def new
     @covid_information = CovidInformation.new
   end
 
-  # GET /covid_informations/1/edit
   def edit
   end
 
-  # POST /covid_informations
-  # POST /covid_informations.json
   def create
     @covid_information = CovidInformation.new(covid_information_params)
 
@@ -37,8 +30,6 @@ class CovidInformationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /covid_informations/1
-  # PATCH/PUT /covid_informations/1.json
   def update
     respond_to do |format|
       if @covid_information.update(covid_information_params)
@@ -51,8 +42,6 @@ class CovidInformationsController < ApplicationController
     end
   end
 
-  # DELETE /covid_informations/1
-  # DELETE /covid_informations/1.json
   def destroy
     @covid_information.destroy
     respond_to do |format|
@@ -62,12 +51,10 @@ class CovidInformationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_covid_information
       @covid_information = CovidInformation.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def covid_information_params
       params.require(:covid_information).permit(:date_reference, :suspected, :confirmed, :home_isolation, :hospitalized, :discarded, :deaths, :city_id)
     end

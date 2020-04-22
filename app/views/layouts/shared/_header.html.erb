@@ -1,15 +1,26 @@
 <header class="navbar navbar-expand navbar-dark bd-navbar d-flex justify-content-center">
+      <span class="navbar-toggler-icon"></span>
+    </button>
      <h1 class="title text-center">Atlas Socioeconômico do Norte Fluminense</h1>
+     <% if user_signed_in? %>
+        <ul class="navbar-nav">
+          <span class="ml-3">|</span>
+          <span class="mr-3"></span>
+          <li class="nav-item active">
+            <a href="/">Home <span class="sr-only"></span></a>
+          </li>
+          <span class="ml-3">|</span>
+          <span class="mr-3"></span>
+          <li class="nav-item">
+            <%= link_to('Informações', covid_informations_path) %>        
+          </li>
+          <span class="ml-3">|</span>
+          <span class="mr-3"></span>
+          <li class="nav-item">
+            <%= link_to 'Sair ', destroy_user_session_path, method: :delete %> 
+          </li>
+        </ul>
+     <% end %>
+
+
 </header>
-
-
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12">
-    <p>
-      <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
-      <span>Atualizado em:</span> <span class="subtitle">18:00 14/04/2020</span>
-    </p>
-    </div>
-  </div>
-</div>

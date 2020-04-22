@@ -1,20 +1,46 @@
+<div class="container">
+  <div class="row">
+  <%= simple_form_for(@covid_information) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@covid_information) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-group">
+      <label>Data de Referência</label>
+      <%= f.input :date_reference, label: false%>
+    </div>
+    
+    <div class="form-group">
+      <label>Suspeitos</label>
+      <%= f.input :suspected, label: false %>
+    </div>
+    <div class="form-group">
+      <label>Confirmados</label>
+      <%= f.input :confirmed, label: false %>
+    </div>
+    <div class="form-group">
+      <label>Em isolamento domiciliar</label>
+      <%= f.input :home_isolation, label: false %>
+    </div>
+    <div class="form-group">
+      <label>Hospitalizado</label>
+      <%= f.input :hospitalized, label: false %>
+    </div>
+    <div class="form-group">
+      <label>Descartados</label>
+      <%= f.input :discarded, label: false %>
+    </div>
+    <div class="form-group">
+      <label>Óbitos</label>
+      <%= f.input :deaths, label: false %>
+    </div>
 
-  <div class="form-group">
-    <%= f.input :date_reference %>
-    <%= f.input :suspected %>
-    <%= f.input :confirmed %>
-    <%= f.input :home_isolation %>
-    <%= f.input :hospitalized %>
-    <%= f.input :discarded %>
-    <%= f.input :deaths %>
-    <%= f.association :city %>
+    <div class="form-group">
+      <label>Cidades</label>
+      <%= f.association :city, label: false %>
+    </div>
+    <div class="form-group">
+      <%= f.button :submit, class:"btn-primary" %>
+    </div>
+  <% end %>
   </div>
-
-  <div class="form-group">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

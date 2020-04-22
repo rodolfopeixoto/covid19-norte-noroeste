@@ -1,3 +1,13 @@
+
+  <div class="row">
+    <div class="col-12">
+    <p>
+      <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
+      <span>Atualizado em:</span> <span class="subtitle"><%= CovidInformation.last.date_reference.strftime("%H:%M:%S %d/%m/%Y") %></span>
+    </p>
+    </div>
+  </div>
+
 <div class="container">
   <div class="row">
     
@@ -68,11 +78,11 @@
        
     <div class="card">
       
-    <div class="card-header">Casos confirmados por cidades</div>
-       <div class="card-body">
-         <%= column_chart City.joins(:covid_informations)
-                              .where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } )
-                              .pluck("cities.name, covid_informations.confirmed"), colors: ["#ff2100", "#666"] %>
+    <div class="card-header">
+      <span class="card-text-header">  CASOS CONFIRMADOS</span>
+    </div>
+       <span class="card-text-header"> <div class="card-body"></span>
+         <%= column_chart @max_confirmed_by_city, colors: ["#ff2100", "#666"] %>
        </div>
     </div>
 
@@ -81,11 +91,11 @@
     <div class="col-6">
       
     <div class="card">
-    <div class="card-header">Casos suspeitos por cidades</div>
-       <div class="card-body">
-         <%= column_chart City.joins(:covid_informations)
-                              .where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } )
-                              .pluck("cities.name, covid_informations.suspected"), colors: ["#ff9800", "#666"] %>
+      <div class="card-header">
+        <span class="card-text-header"> CASOS SUSPEITOS</span>
+      </div>
+       <span class="card-text-header"> <div class="card-body"></span>
+         <%= column_chart @max_suspected_by_city, colors: ["#ff9800", "#666"] %>
 
        </div>
     </div>
@@ -108,32 +118,66 @@
     <div class="col-6">
 
        
-    <div class="card">
+      <div class="card">
 
-       <div class="card-header">
-         Casos suspeitos de COVID-19 na Região Norte e Noroeste
-       </div>
+        <div class="card-header">
+          <span class="card-text-header"> CASOS SUSPEITOS NAS REGIÕES</span>
+        </div>
 
-       <div class="card-body">
-         <%= line_chart CovidInformation.joins(:city).
-                 group("covid_informations.date_reference").
-                 order("covid_informations.date_reference").
-                 sum(:suspected) %>
-       </div>
-    </div>
+        <div class="card-body">
+          <%= line_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
+        </div>
+      </div>
 
     </div>
 
     <div class="col-6">
       <div class="card">
         <div class="card-header">
-        Casos confirmados de COVID-19 na Região Norte e Noroeste Fluminense
+        <span class="card-text-header"> CASOS CONFIRMADOS NAS REGIÕES</span>
         </div>
          <div class="card-body">
-           <%= line_chart CovidInformation.joins(:city).
-                 group("covid_informations.date_reference").
-                 order("covid_informations.date_reference").
-                 sum(:confirmed) %>
+           <%= line_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
+
+       </div>
+    </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="container mt-5">
+
+  <div class="row">
+    
+    <div class="col-6">
+
+       
+      <div class="card">
+
+        <div class="card-header">
+          <span class="card-text-header"> CASOS CONFIRMADOS POR CIDADES DA REGIÃO NOROESTE</span>
+        </div>
+
+        <div class="card-body">
+          
+           <%= line_chart @chart_cities_noroeste_confirmed, curve: true, points: true %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS CONFIRMADOS POR CIDADES DA REGIÃO NORTE</span>
+        </div>
+         <div class="card-body">
+           <%= line_chart @chart_cities_norte_confirmed, curve: true, points: true %>
 
        </div>
     </div>
