@@ -1,12 +1,15 @@
 
+
   <div class="row">
     <div class="col-12">
-    <p>
-      <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
-      <span>Atualizado em:</span> <span class="subtitle"><%= CovidInformation.last.date_reference.strftime("%H:%M:%S %d/%m/%Y") %></span>
-    </p>
+        <p>
+          <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
+          <span>Atualizado em:</span> <span class="subtitle"><%= CovidInformation.last.date_reference.strftime("%H:%M:%S %d/%m/%Y") %></span>
+          <br>
+          <span class="text-warning">O painel é totalmente iterativo, clique nas MUNICÍPIOS ou passe o mouse nos gráficos para iteragir</span>
+        </p>
+      </div>
     </div>
-  </div>
 
 <div class="container">
   <div class="row">
@@ -67,40 +70,53 @@
       </div>
     </div>
 
-  </div>
+
+
+    <div class="col-4 mt-3">
+    </div>
+
+    <div class="col-4 mt-3">
+      <div class="card">
+        <div class="card-body">
+          <span class="number-total"><%= @total_heal %></span>
+          <span class="text-total"> PESSOAS CURADAS </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 mt-3">
+    </div>
+
+</div>
 
 <div class="container mt-5">
 
   <div class="row">
     
     <div class="col-6">
-
-       
-    <div class="card">
-      
-    <div class="card-header">
-      <span class="card-text-header">  CASOS CONFIRMADOS</span>
-    </div>
-       <span class="card-text-header"> <div class="card-body"></span>
-         <%= column_chart @max_confirmed_by_city, colors: ["#ff2100", "#666"] %>
-       </div>
-    </div>
-
-    </div>
-
-    <div class="col-6">
-      
-    <div class="card">
-      <div class="card-header">
-        <span class="card-text-header"> CASOS SUSPEITOS</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header">  CASOS CONFIRMADOS MESOREGIÃO NOROESTE FLUMINENSE</span>
+        </div>
+        <div class="card-body">
+            <%= pie_chart @region_norte %>
+        </div>
       </div>
-       <span class="card-text-header"> <div class="card-body"></span>
-         <%= column_chart @max_suspected_by_city, colors: ["#ff9800", "#666"] %>
-
-       </div>
     </div>
 
+    
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header">  CASOS CONFIRMADOS MESOREGIÃO NORTE FLUMINENSE</span>
+        </div>
+        <div class="card-body">
+            <%= pie_chart @region_noroeste %>
+        </div>
+      </div>
     </div>
+
+
 
   </div>
 
@@ -108,14 +124,54 @@
 
 
 
+<div class="container mt-5">
 
+  <div class="row">
+    
+    <div class="col-6">
+      
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS SUSPEITOS MESOREGIÃO NOROESTE FLUMINENSE</span>
+        </div>
+        <span class="card-text-header"> <div class="card-body"></span>
+          <%= pie_chart Region.find(1).cities.includes(:covid_informations).where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
+group(["cities.name","covid_informations.suspected"]).
+order('covid_informations.suspected DESC').
+pluck("cities.name, covid_informations.suspected") %>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="col-6">
+      
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS SUSPEITOS MESOREGIÃO NORTE FLUMINENSE</span>
+        </div>
+        <span class="card-text-header"> <div class="card-body"></span>
+          <%= pie_chart Region.find(2).cities.includes(:covid_informations).where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
+group(["cities.name","covid_informations.suspected"]).
+order('covid_informations.suspected DESC').
+pluck("cities.name, covid_informations.suspected")  %>
+
+        </div>
+      </div>
+
+    </div>
+
+</div>
 
 
 <div class="container mt-5">
 
   <div class="row">
     
-    <div class="col-6">
+    <div class="col-12">
 
        
       <div class="card">
@@ -125,27 +181,53 @@
         </div>
 
         <div class="card-body">
-          <%= line_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
+          <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
         </div>
       </div>
 
     </div>
+  </div>
+</div>
 
-    <div class="col-6">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
-        <span class="card-text-header"> CASOS CONFIRMADOS NAS REGIÕES</span>
+          <span class="card-text-header"> CASOS CONFIRMADOS NAS REGIÕES</span>
         </div>
-         <div class="card-body">
-           <%= line_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
-
-       </div>
+        <div class="card-body">
+           <%= area_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
+         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+
+  <div class="row">
+    
+    <div class="col-12">
+
+       
+      <div class="card">
+
+        <div class="card-header">
+          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESOREGIÃO NOROESTE FLUMINENSE</span>
+        </div>
+
+        <div class="card-body">
+           <%= area_chart @chart_cities_noroeste_confirmed, curve: true, points: true %>
+          </div>
+        </div>
+
+      </div>
 
     </div>
 
   </div>
-
 </div>
 
 
@@ -153,31 +235,13 @@
 <div class="container mt-5">
 
   <div class="row">
-    
-    <div class="col-6">
-
-       
-      <div class="card">
-
-        <div class="card-header">
-          <span class="card-text-header"> CASOS CONFIRMADOS POR CIDADES DA REGIÃO NOROESTE</span>
-        </div>
-
-        <div class="card-body">
-          
-           <%= line_chart @chart_cities_noroeste_confirmed, curve: true, points: true %>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col-6">
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header"> CASOS CONFIRMADOS POR CIDADES DA REGIÃO NORTE</span>
+          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESOREGIÃO NORTE FLUMINENSE</span>
         </div>
          <div class="card-body">
-           <%= line_chart @chart_cities_norte_confirmed, curve: true, points: true %>
+           <%= area_chart @chart_cities_norte_confirmed, curve: true, points: true %>
 
        </div>
     </div>
@@ -185,5 +249,4 @@
     </div>
 
   </div>
-
 </div>

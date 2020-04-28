@@ -1,42 +1,46 @@
 <div class="container">
   <div class="row">
-  <%= simple_form_for(@covid_information) do |f| %>
+  <%= simple_form_for(@covid_information ) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-group">
+    <div class="form-control">
       <label>Data de Referência</label>
-      <%= f.input :date_reference, label: false%>
+      <%= f.input :date_reference, label: false, input_html: { required: true } %>
     </div>
     
-    <div class="form-group">
+    <div class="form-control">
       <label>Suspeitos</label>
-      <%= f.input :suspected, label: false %>
+      <%= f.input :suspected, label: false, input_html: { required: true } %>
     </div>
     <div class="form-group">
       <label>Confirmados</label>
-      <%= f.input :confirmed, label: false %>
+      <%= f.input :confirmed, label: false, input_html: { required: true } %>
     </div>
     <div class="form-group">
       <label>Em isolamento domiciliar</label>
-      <%= f.input :home_isolation, label: false %>
+      <%= f.input :home_isolation, label: false, input_html: { required: true } %>
     </div>
     <div class="form-group">
       <label>Hospitalizado</label>
-      <%= f.input :hospitalized, label: false %>
+      <%= f.input :hospitalized, label: false, input_html: { required: true } %>
     </div>
     <div class="form-group">
       <label>Descartados</label>
-      <%= f.input :discarded, label: false %>
+      <%= f.input :discarded, label: false, input_html: { required: true } %>
     </div>
     <div class="form-group">
       <label>Óbitos</label>
-      <%= f.input :deaths, label: false %>
+      <%= f.input :deaths, label: false, input_html: { required: true } %>
+    </div>
+    <div class="form-group">
+      <label>Curados</label>
+      <%= f.input :heal, label: false, input_html: { required: true } %>
     </div>
 
     <div class="form-group">
       <label>Cidades</label>
-      <%= f.association :city, label: false %>
+      <%= f.association :city, label: false, input_html: { required: true } %>
     </div>
     <div class="form-group">
       <%= f.button :submit, class:"btn-primary" %>

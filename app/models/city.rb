@@ -3,14 +3,18 @@ class City < ApplicationRecord
   has_many :covid_informations
 
   def self.max_suspected_by_city
-    City.joins(:covid_informations)
-      .where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } )
-      .pluck("cities.name, covid_informations.suspected")
+    CovidInformation.includes(:city).
+    where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
+    group(["cities.name","covid_informations.suspected"]).
+    order('covid_informations.suspected DESC').
+    pluck("cities.name, covid_informations.suspected")
   end
 
   def self.max_confirmed_by_city
-    City.joins(:covid_informations)
-      .where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } )
-      .pluck("cities.name, covid_informations.confirmed")
+    CovidInformation.includes(:city).
+    where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
+    group(["cities.name","covid_informations.confirmed"]).
+    order('covid_informations.confirmed DESC').
+    pluck("cities.name, covid_informations.confirmed")
   end
 end

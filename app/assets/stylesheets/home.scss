@@ -83,3 +83,23 @@ header {
 .card {
   border-radius: 1.0rem;
 }
+
+
+footer.page-footer.font-small.indigo {
+  background: #000ebb;
+  color: white;
+  margin-top: 5%;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+  color: #d4d4d4;
+}
+
+
+.form-class {
+  width: max-content;
+}
