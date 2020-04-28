@@ -81,6 +81,7 @@ GEM
       xpath (~> 3.2)
     chartkick (3.3.1)
     childprocess (3.0.0)
+    cocoon (1.2.14)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
@@ -265,6 +266,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   chartkick
+  cocoon
   database_cleaner
   devise
   factory_bot

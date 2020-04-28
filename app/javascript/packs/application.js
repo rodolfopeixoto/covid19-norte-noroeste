@@ -11,6 +11,7 @@ require("jquery")
 require("bootstrap-material-design")
 require("chartkick")
 require("chart.js")
+require("cocoon-js")
 $(document).ready(function() { $('body').bootstrapMaterialDesign(); });
 
 // Uncomment to copy all static images under ../images to the output folder and reference

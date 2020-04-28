@@ -24,6 +24,7 @@ gem 'devise'
 gem 'bootstrap-material-design'
 gem 'simple_form'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'cocoon'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
