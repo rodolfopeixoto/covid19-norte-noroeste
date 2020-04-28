@@ -1,14 +1,16 @@
 
 
-  <div class="row">
-    <div class="col-12">
-        <p>
-          <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
-          <span>Atualizado em:</span> <span class="subtitle"><%= CovidInformation.last.date_reference.strftime("%H:%M:%S %d/%m/%Y") %></span>
-          <br>
-          <span class="text-warning">O painel é totalmente iterativo, clique nas MUNICÍPIOS ou passe o mouse nos gráficos para iteragir</span>
-        </p>
-      </div>
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-12 painel-border">
+            <p>
+              <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
+              <span>Atualizado em:</span> <span class="subtitle"><%= CovidInformation.last.date_reference.strftime("%d/%m/%Y") %></span>
+              <br>
+              <span class="text-warning">O painel é totalmente iterativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para iteragir</span>
+            </p>
+          </div>
+        </div>
     </div>
 
 <div class="container">
@@ -96,7 +98,7 @@
     <div class="col-6">
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header">  CASOS CONFIRMADOS MESOREGIÃO NOROESTE FLUMINENSE</span>
+          <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NOROESTE FLUMINENSE</span>
         </div>
         <div class="card-body">
             <%= pie_chart @region_norte %>
@@ -108,7 +110,7 @@
     <div class="col-6">
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header">  CASOS CONFIRMADOS MESOREGIÃO NORTE FLUMINENSE</span>
+          <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NORTE FLUMINENSE</span>
         </div>
         <div class="card-body">
             <%= pie_chart @region_noroeste %>
@@ -132,7 +134,7 @@
       
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header"> CASOS SUSPEITOS MESOREGIÃO NOROESTE FLUMINENSE</span>
+          <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NOROESTE FLUMINENSE</span>
         </div>
         <span class="card-text-header"> <div class="card-body"></span>
           <%= pie_chart Region.find(1).cities.includes(:covid_informations).where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
@@ -151,7 +153,7 @@ pluck("cities.name, covid_informations.suspected") %>
       
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header"> CASOS SUSPEITOS MESOREGIÃO NORTE FLUMINENSE</span>
+          <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NORTE FLUMINENSE</span>
         </div>
         <span class="card-text-header"> <div class="card-body"></span>
           <%= pie_chart Region.find(2).cities.includes(:covid_informations).where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
@@ -177,7 +179,7 @@ pluck("cities.name, covid_informations.suspected")  %>
       <div class="card">
 
         <div class="card-header">
-          <span class="card-text-header"> CASOS SUSPEITOS NAS REGIÕES</span>
+          <span class="card-text-header"> CASOS SUSPEITOS NAS MESORREGIÕES</span>
         </div>
 
         <div class="card-body">
@@ -194,7 +196,7 @@ pluck("cities.name, covid_informations.suspected")  %>
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header"> CASOS CONFIRMADOS NAS REGIÕES</span>
+          <span class="card-text-header"> CASOS CONFIRMADOS NAS MESORREGIÕES</span>
         </div>
         <div class="card-body">
            <%= area_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
@@ -215,7 +217,7 @@ pluck("cities.name, covid_informations.suspected")  %>
       <div class="card">
 
         <div class="card-header">
-          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESOREGIÃO NOROESTE FLUMINENSE</span>
+          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESORREGIÃO NOROESTE FLUMINENSE</span>
         </div>
 
         <div class="card-body">
@@ -238,7 +240,7 @@ pluck("cities.name, covid_informations.suspected")  %>
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESOREGIÃO NORTE FLUMINENSE</span>
+          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESORREGIÃO NORTE FLUMINENSE</span>
         </div>
          <div class="card-body">
            <%= area_chart @chart_cities_norte_confirmed, curve: true, points: true %>

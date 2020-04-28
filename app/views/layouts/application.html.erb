@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CovidData</title>
+    <title>Atlas Socioeconômico do Norte Fluminense | COVID-19 </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,11 +11,7 @@
 
   <body>
     <%= render 'layouts/shared/header' %>
-    <div class="container mt-5 mb-5">
-      <div class="row">
-        <%= yield %>
-      </div>
-    </div>
-  <%= render 'layouts/shared/footer' %>
+    <%= yield %>
+    <%= render 'layouts/shared/footer' %>
   </body>
 </html>

@@ -61,23 +61,28 @@ header {
 
 .text-orange {
   color: #fcb243;
+  font-family: "Roboto", sans-serif;
 }
 
 .text-yellow{
   color: #ffc107;
+  font-family: "Roboto", sans-serif;
 }
 
 .text-green {
   color: #28b63f;
+  font-family: "Roboto", sans-serif;
 }
 
 
 .text-red {
   color: #dd0000;
+  font-family: "Roboto", sans-serif;
 }
 
 .text-yellow-light {
   color: #ffc260;
+  font-family: "Roboto", sans-serif;
 }
 
 .card {
@@ -102,4 +107,12 @@ footer a:hover {
 
 .form-class {
   width: max-content;
+}
+
+.painel-border {
+
+  background-color: white;
+  border-radius: 1%;
+  padding: 21px;
+
 }
