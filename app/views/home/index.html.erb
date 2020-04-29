@@ -101,7 +101,7 @@
           <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NOROESTE FLUMINENSE</span>
         </div>
         <div class="card-body">
-            <%= pie_chart @region_norte %>
+            <%= pie_chart @region_noroeste %>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
           <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NORTE FLUMINENSE</span>
         </div>
         <div class="card-body">
-            <%= pie_chart @region_noroeste %>
+            <%= pie_chart @region_norte %>
         </div>
       </div>
     </div>
@@ -137,10 +137,7 @@
           <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NOROESTE FLUMINENSE</span>
         </div>
         <span class="card-text-header"> <div class="card-body"></span>
-          <%= pie_chart Region.find(1).cities.includes(:covid_informations).where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
-group(["cities.name","covid_informations.suspected"]).
-order('covid_informations.suspected DESC').
-pluck("cities.name, covid_informations.suspected") %>
+          <%= pie_chart @suspected_noroeste %>
 
         </div>
       </div>
@@ -156,10 +153,7 @@ pluck("cities.name, covid_informations.suspected") %>
           <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NORTE FLUMINENSE</span>
         </div>
         <span class="card-text-header"> <div class="card-body"></span>
-          <%= pie_chart Region.find(2).cities.includes(:covid_informations).where(covid_informations: { date_reference: CovidInformation.maximum(:date_reference)  } ).
-group(["cities.name","covid_informations.suspected"]).
-order('covid_informations.suspected DESC').
-pluck("cities.name, covid_informations.suspected")  %>
+          <%= pie_chart @suspected_norte  %>
 
         </div>
       </div>

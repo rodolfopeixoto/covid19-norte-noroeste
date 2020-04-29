@@ -17,5 +17,7 @@ class HomeController < ApplicationController
     @max_confirmed_by_city = City.max_confirmed_by_city
     @region_norte = Region.confirmed_by_region_norte
     @region_noroeste = Region.confirmed_by_region_noroeste
+    @suspected_noroeste = Region.suspected_noroeste
+    @suspected_norte = Region.suspected_norte
   end
 end
