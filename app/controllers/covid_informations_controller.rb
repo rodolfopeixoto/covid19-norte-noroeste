@@ -56,6 +56,6 @@ class CovidInformationsController < ApplicationController
     end
 
     def covid_information_params
-      params.require(:covid_information).permit(:date_reference, :suspected, :confirmed, :home_isolation, :hospitalized, :discarded, :deaths, :city_id)
+      params.require(:covid_information).permit(:date_reference, :suspected, :confirmed, :home_isolation, :hospitalized, :discarded, :deaths, :heal, :city_id)
     end
 end
