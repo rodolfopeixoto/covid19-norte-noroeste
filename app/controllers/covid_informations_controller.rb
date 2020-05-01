@@ -3,7 +3,7 @@ class CovidInformationsController < ApplicationController
   before_action :set_covid_information, only: [:show, :edit, :update, :destroy]
 
   def index
-    @covid_informations = CovidInformation.includes(:city).order("date_reference desc").limit(30)
+    @covid_informations = CovidInformation.includes(:city).order("date_reference desc").page(params[:page])
   end
 
   def show

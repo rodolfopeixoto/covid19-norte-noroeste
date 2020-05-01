@@ -22,7 +22,7 @@
   <tbody>
     <% @covid_informations.each do |covid_information| %>
       <tr>
-        <td><%= covid_information.date_reference %></td>
+        <td><%= covid_information.date_reference.strftime("%d/%m/%Y") %></td>
         <td><%= covid_information.suspected %></td>
         <td><%= covid_information.confirmed %></td>
         <td><%= covid_information.home_isolation %></td>
@@ -33,11 +33,13 @@
         <td><%= covid_information.city.name %></td>
         <td><%= link_to 'Visualizar', covid_information %></td>
         <td><%= link_to 'Editar', edit_covid_information_path(covid_information) %></td>
-        <td><%= link_to 'Excluir', covid_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Excluir', covid_information_path(covid_information), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+  <tfoot>
+    <%= paginate @covid_informations %>
+  </tfoot>
 </table>
-
 <br>
 

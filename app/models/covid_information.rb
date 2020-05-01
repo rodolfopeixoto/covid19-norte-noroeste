@@ -1,4 +1,7 @@
 class CovidInformation < ApplicationRecord
+
+  paginates_per 22
+
   belongs_to :city
 
   scope :regions_total_confirmed, ->() { CovidInformation.joins(:city).group("covid_informations.date_reference").order("covid_informations.date_reference").sum(:confirmed) }
