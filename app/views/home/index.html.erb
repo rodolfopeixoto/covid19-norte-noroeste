@@ -5,9 +5,9 @@
         <div class="col-12 painel-border">
             <p>
               <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
-              <span>Atualizado em:</span> <span class="subtitle"><%= CovidInformation.last.date_reference.strftime("%d/%m/%Y") %></span>
+              <span>Atualizado em:</span> <span class="subtitle"><%= @covid_date_current %></span>
               <br>
-              <span class="text-warning">O painel é totalmente iterativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para iteragir</span>
+              <span class="text-warning">O painel é totalmente iterativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
             </p>
           </div>
         </div>
@@ -15,7 +15,7 @@
 
 <div class="container">
   <div class="row">
-    
+
     <div class="col-4">
       <div class="card">
         <div class="card-body">
@@ -45,7 +45,7 @@
 
 
 
-    <div class="col-4 mt-3">  
+    <div class="col-4 mt-3">
       <div class="card">
         <div class="card-body">
           <span class="number-total"><%= @total_hospitalized %></span>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="col-4 mt-3">  
+    <div class="col-4 mt-3">
       <div class="card">
         <div class="card-body">
           <span class="number-total"><%= @total_home_isolation %></span>
@@ -94,7 +94,7 @@
 <div class="container mt-5">
 
   <div class="row">
-    
+
     <div class="col-6">
       <div class="card">
         <div class="card-header">
@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    
+
     <div class="col-6">
       <div class="card">
         <div class="card-header">
@@ -129,9 +129,9 @@
 <div class="container mt-5">
 
   <div class="row">
-    
+
     <div class="col-6">
-      
+
       <div class="card">
         <div class="card-header">
           <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NOROESTE FLUMINENSE</span>
@@ -147,7 +147,7 @@
 
 
     <div class="col-6">
-      
+
       <div class="card">
         <div class="card-header">
           <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NORTE FLUMINENSE</span>
@@ -166,10 +166,10 @@
 <div class="container mt-5">
 
   <div class="row">
-    
+
     <div class="col-12">
 
-       
+
       <div class="card">
 
         <div class="card-header">
@@ -177,7 +177,7 @@
         </div>
 
         <div class="card-body">
-          <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
+          <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos", max: 2000 %>
         </div>
       </div>
 
@@ -204,10 +204,10 @@
 <div class="container mt-5">
 
   <div class="row">
-    
+
     <div class="col-12">
 
-       
+
       <div class="card">
 
         <div class="card-header">
