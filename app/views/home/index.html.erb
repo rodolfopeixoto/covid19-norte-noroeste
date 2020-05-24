@@ -177,7 +177,7 @@
         </div>
 
         <div class="card-body">
-          <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos", max: @sum_suspected.values.last.ceil(-@sum_suspected.values.last.digits.count + 1) %>
+          <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
         </div>
       </div>
 
@@ -193,7 +193,7 @@
           <span class="card-text-header"> CASOS CONFIRMADOS NAS MESORREGIÕES</span>
         </div>
         <div class="card-body">
-           <%= area_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados", max: @cases_deaths_and_confirmed[1].values.last.values.last.ceil(-@cases_deaths_and_confirmed[1].values.last.values.last.digits.count + 1) %>
+           <%= area_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
          </div>
       </div>
     </div>
