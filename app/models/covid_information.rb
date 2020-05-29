@@ -3,6 +3,8 @@ class CovidInformation < ApplicationRecord
   paginates_per 22
 
   belongs_to :city
+  # total confirmed por semana
+  # result = conn.execute "SELECT SUM(confirmed) as total_by_week, date_trunc('week', CAST(date_reference AS DATE)) weekly FROM covid_informations GROUP BY weekly ORDER BY weekly;"
 
   scope :regions_total_confirmed, ->() { CovidInformation.joins(:city).group("covid_informations.date_reference").order("covid_informations.date_reference").sum(:confirmed) }
   scope :regions_total_suspected, ->() { CovidInformation.joins(:city).group("covid_informations.date_reference").order("covid_informations.date_reference").sum(:suspected) }
