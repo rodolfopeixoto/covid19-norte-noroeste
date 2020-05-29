@@ -6,6 +6,7 @@
             <p>
               <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
               <span>Atualizado em:</span> <span class="subtitle"><%= @covid_date_current %></span>
+              <span class="text-information">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
             </p>
           </div>
         </div>
@@ -97,8 +98,6 @@
       <div class="card">
         <div class="card-header">
           <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NOROESTE FLUMINENSE</span>
-          <br>
-          <span class="text-warning">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
         </div>
         <div class="card-body">
             <%= pie_chart @region_noroeste %>
@@ -111,8 +110,6 @@
       <div class="card">
         <div class="card-header">
           <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NORTE FLUMINENSE</span>
-          <br>
-          <span class="text-warning">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
         </div>
         <div class="card-body">
             <%= pie_chart @region_norte %>
@@ -137,8 +134,6 @@
       <div class="card">
         <div class="card-header">
           <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NOROESTE FLUMINENSE</span>
-          <br>
-          <span class="text-warning">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
         </div>
         <span class="card-text-header"> <div class="card-body"></span>
           <%= pie_chart @suspected_noroeste %>
@@ -155,8 +150,6 @@
       <div class="card">
         <div class="card-header">
           <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NORTE FLUMINENSE</span>
-          <br>
-          <span class="text-warning">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
         </div>
         <span class="card-text-header"> <div class="card-body"></span>
           <%= pie_chart @suspected_norte  %>
