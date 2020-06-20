@@ -13,7 +13,7 @@ class CovidInformation < ApplicationRecord
     CovidInformation.joins(:city).
         group("covid_informations.date_reference").
         order("covid_informations.date_reference").
-        sum(:confirmed) 
+        sum(:confirmed)
   end
 
   def self.sum_deaths

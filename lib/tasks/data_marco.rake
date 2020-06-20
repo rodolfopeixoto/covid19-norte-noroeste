@@ -42,7 +42,7 @@ namespace :data_marco do
 
             home_isolation = sheet.cell(row, 5).to_i
             home_isolation_condiction = home_isolation == '-' ? 0 : home_isolation
-  
+
             hospitalized = sheet.cell(row, 6).to_i
             hospitalized_condiction = hospitalized == '-' ? 0 : hospitalized
 
