@@ -1,14 +1,16 @@
-<div class="container mt-5 mb-5">
-  <div class="row">
-    <div class="col-12 painel-border">
-      <p>
-        <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
-        <span>Atualizado em:</span> <span class="subtitle"><%= @covid_date_current %></span>
-        <span class="text-information">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
-      </p>
+
+
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-12 painel-border">
+            <p>
+              <span class="subtitle">Painel COVID-19</span> - <span> Norte e Noroeste Fluminense</span></br>
+              <span>Atualizado em:</span> <span class="subtitle"><%= @covid_date_current %></span>
+              <span class="text-information">O painel é totalmente interativo, clique nos MUNICÍPIOS ou passe o mouse nos gráficos para interagir</span>
+            </p>
+          </div>
+        </div>
     </div>
-  </div>
-</div>
 
 <div class="container">
   <div class="row">
@@ -86,173 +88,160 @@
     <div class="col-4 mt-3">
     </div>
 
-  </div>
+</div>
 
-  <div class="col-md-6">
+<div class="container mt-5">
 
+  <div class="row">
 
-    <!-- DONUT CHART -->
-    <div class="card card-danger">
-      <div class="card-header">
-        <h3 class="card-title">CONFIRMADOS - MESORREGIÃO NORTE FLUMINENSE</h3>
-
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NOROESTE FLUMINENSE</span>
+        </div>
+        <div class="card-body">
+            <%= pie_chart @region_noroeste %>
         </div>
       </div>
-      <div class="card-body">
-        <%= pie_chart @region_norte, donut: true, legend: "right" %>
-      </div>
-      <!-- /.card-body -->
     </div>
-    <!-- /.card -->
-  </div>
 
 
-
-  <div class="container mt-5">
-
-    <div class="row">
-
-      <div class="col-6">
-
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header">  CASOS CONFIRMADOS MESORREGIÃO NORTE FLUMINENSE</span>
+        </div>
+        <div class="card-body">
+            <%= pie_chart @region_norte %>
         </div>
       </div>
-      <div class="card-body">
-        <%= pie_chart @region_noroeste, donut: true, legend: "right" %>
-      </div>
-      <!-- /.card-body -->
     </div>
-    <!-- PIE CHART -->
-    <!-- /.card -->
+
+
 
   </div>
 
-
-  <div class="container mt-5">
-
-    <div class="row">
-
-      <div class="col-12">
+</div>
 
 
-        <div class="card">
 
-          <div class="card-header">
-            <span class="card-text-header"> CASOS SUSPEITOS NAS MESORREGIÕES</span>
+<div class="container mt-5">
+
+  <div class="row">
+
+    <div class="col-6">
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NOROESTE FLUMINENSE</span>
+        </div>
+        <span class="card-text-header"> <div class="card-body"></span>
+          <%= pie_chart @suspected_noroeste %>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="col-6">
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS SUSPEITOS MESORREGIÃO NORTE FLUMINENSE</span>
+        </div>
+        <span class="card-text-header"> <div class="card-body"></span>
+          <%= pie_chart @suspected_norte  %>
+
+        </div>
+      </div>
+
+    </div>
+
+</div>
+
+
+<div class="container mt-5">
+
+  <div class="row">
+
+    <div class="col-12">
+
+
+      <div class="card">
+
+        <div class="card-header">
+          <span class="card-text-header"> CASOS SUSPEITOS NAS MESORREGIÕES</span>
+        </div>
+
+        <div class="card-body">
+          <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS CONFIRMADOS NAS MESORREGIÕES</span>
+        </div>
+        <div class="card-body">
+           <%= area_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+
+  <div class="row">
+
+    <div class="col-12">
+
+
+      <div class="card">
+
+        <div class="card-header">
+          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESORREGIÃO NOROESTE FLUMINENSE</span>
+        </div>
+
+        <div class="card-body">
+           <%= area_chart @chart_cities_noroeste_confirmed, curve: true, points: true %>
           </div>
-
-          <div class="card-body">
-            <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
-          </div>
-        </div>
-
-      </div>
-      <div class="card-body">
-        <%= pie_chart @suspected_noroeste, donut: true, legend: "right" %>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="container mt-5">
-
-    <div class="row">
-
-      <div class="col-12">
-
-
-        <div class="card">
-
-          <div class="col-md-12">
-
-
-            <!-- PIE CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">CONFIRMADOS - POR MUNICÍPIOS DA MESORREGIÃO NOROESTE FLUMINENSE</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <%= area_chart @chart_cities_noroeste_confirmed, curve: true, points: true, legend: "right" %>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">CASOS SUSPEITOS NAS MESORREGIÕES</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <%= area_chart @sum_suspected, xtitle: "Dia da Semana", ytitle: "Casos Suspeitos" %>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- STACKED BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">CASOS CONFIRMADOS NAS MESORREGIÕES</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <%= area_chart @cases_deaths_and_confirmed, xtitle: "Dia da Semana", ytitle: "Casos Confirmados" %>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- STACKED BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">CONFIRMADOS - POR MUNICÍPIOS DA MESORREGIÃO NORTE FLUMINENSE</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <%= area_chart @chart_cities_norte_confirmed, curve: true, points: true %>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <div class="card-body">
-              <%= area_chart @chart_cities_noroeste_confirmed, curve: true, points: true %>
-            </div>
-          </div>
-
         </div>
 
       </div>
 
     </div>
+
   </div>
+</div>
+
+
+
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-text-header"> CASOS CONFIRMADOS POR MUNICÍPIOS DA MESORREGIÃO NORTE FLUMINENSE</span>
+        </div>
+         <div class="card-body">
+           <%= area_chart @chart_cities_norte_confirmed, curve: true, points: true %>
+
+       </div>
+    </div>
+
+    </div>
+
+  </div>
+</div>
