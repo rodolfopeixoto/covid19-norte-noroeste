@@ -1596,11 +1596,6 @@ bootstrap-colorpicker@^3.2.0:
     jquery ">=2.1.0"
     popper.js ">=1.10"
 
-bootstrap-material-design@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-material-design/-/bootstrap-material-design-4.1.1.tgz#87433db0bf64d6a0afb0f5faaa8606134c9d26d2"
-  integrity sha1-h0M9sL9k1qCvsPX6qoYGE0ydJtI=
-
 bootstrap-slider@^10.6.2:
   version "10.6.2"
   resolved "https://registry.yarnpkg.com/bootstrap-slider/-/bootstrap-slider-10.6.2.tgz#7341f468c012bdaa6a1d8625d989fdeb8ed7dd38"

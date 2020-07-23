@@ -8,8 +8,6 @@ require("turbolinks").start()
 // require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require("bootstrap-material-design")
-require("chartkick");
 require("cocoon-js");
 
 global.$ = global.jQuery = jQuery;
@@ -17,6 +15,7 @@ window.$ = window.jQuery = jQuery;
 
 require("bootstrap");
 require("admin-lte");
+require("chartkick");
 require("chart.js");
 
 import "@fortawesome/fontawesome-free/js/all";
