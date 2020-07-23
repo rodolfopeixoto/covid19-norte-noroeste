@@ -7,13 +7,214 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&lang=en">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'layouts/shared/header' %>
-    <%= yield %>
-    <%= render 'layouts/shared/footer' %>
+<body class="hold-transition sidebar-collapse layout-top-nav">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+    <div class="container">
+      <a href="../../index3.html" class="navbar-brand">
+        <span class="brand-text font-weight-light">Atlas Socioeconômico</span>
+      </a>
+
+      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        <!-- Left navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <% if current_user %>
+            <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Contato', root_path, class: 'nav-link' %>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- /.navbar -->
+
+  <%= render 'layouts/shared/aside' %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark"><small></small></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container">
+        <div class="row">
+            <%= yield %>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </section>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+      <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Fontes</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://www.campos.rj.gov.br/" target="_blank">Campos dos Goytacazes</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/PrefeituraDeCarapebus/" target="_blank">Carapebus</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/pmcardosomoreira/" target="_blank">Cardoso Moreira</a>
+          </li>
+          <li>
+            <a href="http://www.conceicaodemacabu.rj.gov.br/pagina/10849/INFORMAÇÕES%20-%20CORONAVÍRUS" target="_blank">Conceição de Macabu</a>
+          </li>
+          <li>
+            <a href="http://www.macae.rj.gov.br/saude/conteudo/titulo/coronavirus-informacoes-e-orientacoes-importantes" target="_blank">Macaé</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/PrefeituraMunicipalDeQuissama/" target="_blank">Quissamã</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Fontes</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://www.facebook.com/prefeiturasaojoaodabarra/?epa=SEARCH_BOX" target="_blank">São João da Barra</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/PrefeituraSaoFranciscodeitabapoana/" target="_blank">São Francisco de Itabapoana</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/prefeituradesf/" target="_blank">São Fidélis</a>
+          </li>
+          <li>
+            <a href="https://varresai.rj.gov.br/home" target="_blank">Varre-Sai</a>
+          </li>
+          <li>
+            <a href="https://www.santoantoniodepadua.rj.gov.br/" target="_blank">Santo Antônio de Pádua</a>
+          </li>
+          <li>
+            <a href="https://www.bomjesus.rj.gov.br/site/" target="_blank">Bom Jesus do Itabapoana</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Fontes</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://www.aperibe.rj.gov.br/home" target="_blank">Aperibé</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/pg/PrefCambuci/posts/?ref=page_internal" target="_blank">Cambuci</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/GovernodeItalva/" target="_blank">Italva</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/Prefeituradeitaperuna/?ref=br_rs" target="_blank">Itaperuna</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/PrefeituraDeItaocara/" target="_blank">Itaocara</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Fontes</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://laje.rj.gov.br/index.php" target="_blank">Laje do Muriaé</a>
+          </li>
+          <li>
+            <a href="http://www.miracema.rj.gov.br/" target="_blank">Miracema</a>
+          </li>
+          <li>
+            <a href="https://www.natividade.rj.gov.br/" target="_blank">Natividade</a>
+          </li>
+          <li>
+            <a href="https://www.natividade.rj.gov.br/" target="_blank">Porciúncula</a>
+          </li>
+          <li>
+          <a href="https://www.saojosedeuba.rj.gov.br/home" target="_blank">São José de Ubá</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+    <!-- Default to the left -->
+    <strong>Desenvolvido por <a href="https://rodolfopeixoto.com.br">Rodolfo Peixoto</a> e <a href="#">Atlas</a>.</strong> Todos os direitos reservados.
+  </footer>
+  </div>
   </body>
 </html>
