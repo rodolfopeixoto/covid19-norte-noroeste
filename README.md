@@ -1,24 +1,28 @@
-# README
+# ATLAS COVID-19
+Um sistema para mostrar os dados do covid-19 na região norte e norte fluminense do Estado do Rio de Janeiro
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Site Oficial: [AtlasNF-Covid19](http://atlasnf-covid19.com.br)
 
-Things you may want to cover:
+## Requisitos
 
-* Ruby version
+ Ruby 2.6.5
+ Rails 6.0.2.2
 
-* System dependencies
+## Theme
 
-* Configuration
+Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
 
-* Database creation
 
-* Database initialization
+## Executar
 
-* How to run the test suite
+  ```bash
+    bundle exec rails db:setup
+  ```
 
-* Services (job queues, cache servers, search engines, etc.)
+  ```bash
+    bundle exec rails data_marco:create
+  ```
 
-* Deployment instructions
-
-* ...
+  ```bash
+   bundle exec rails server
+  ```
