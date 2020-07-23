@@ -115,18 +115,7 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Casos Positivos</span>
-              <span class="info-box-number"></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
         <!-- /.col -->
       </div>
     </div>
@@ -181,7 +170,7 @@
 </div>
 
 
-<div class="col-12">
+<div class="col-6">
 
   <div class="card card-danger">
     <div class="card-header">
@@ -195,6 +184,25 @@
     </div>
     <div class="card-body">
       <%= pie_chart @suspected_noroeste, donut: true, legend: "right" %>
+    </div>
+    <!-- /.card-body -->
+  </div>
+</div>
+
+<div class="col-6">
+
+  <div class="card card-danger">
+    <div class="card-header">
+      <h3 class="card-title">SUSPEITOS - MESORREGIÃO NORTE FLUMINENSE</h3>
+
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= pie_chart @suspected_norte, donut: true, legend: "right" %>
     </div>
     <!-- /.card-body -->
   </div>
@@ -276,5 +284,25 @@
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
+
+</div>
+
+
+<div class="col-12">
+
+  <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" class="svg-inline--fa fa-info fa-w-6 icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"></path></svg><!-- <i class="icon fas fa-info"></i> --> Nota</h5>
+    <p><strong>Nota sobre o número de hospitalizados:</strong>
+      <br/>Campos dos Goytacazes, Macaé, Italva  e Porciúncula não disponibilizam informações sobre hospitalizados por covid-19.
+    </p>
+
+    <p><strong>Nota sobre o número de casos suspeitos da covid-19:</strong>
+      <br/>Itaperuna, Santo Antônio de Pádua, Miracema, Aperibé, Campos dos Goytacazes e Cambuci divulgam o número acumulado de casos suspeitos;
+    Porciúncula, Itaocara, Italva, Natividade, são José de Ubá, Laje do Muriaé, Varre-Sai, Carapebus, Cardoso Moreira, Conceição de Macabu, Quissamã, São Fidélis, São Francisco de Itabapoana, São João da Barra divulgam o número diário de casos suspeitos;
+    Bom Jesus do Itabapoana e Macaé não divulgam o número de casos suspeitos.
+    </p>
+
+  </div>
 
 </div>
