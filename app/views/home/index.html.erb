@@ -149,7 +149,7 @@
                 </div>
               </div>
               <div class="card-body">
-                 <%= pie_chart @region_norte %>
+                 <%= pie_chart @region_norte, donut: true, legend: "right" %>
               </div>
               <!-- /.card-body -->
             </div>
@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <%= pie_chart @region_noroeste %>
+                <%= pie_chart @region_noroeste, donut: true, legend: "right" %>
               </div>
               <!-- /.card-body -->
             </div>
@@ -194,7 +194,7 @@
       </div>
     </div>
     <div class="card-body">
-      <%= pie_chart @suspected_noroeste %>
+      <%= pie_chart @suspected_noroeste, donut: true, legend: "right" %>
     </div>
     <!-- /.card-body -->
   </div>
@@ -217,7 +217,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <%= area_chart @chart_cities_noroeste_confirmed, curve: true, points: true %>
+                <%= area_chart @chart_cities_noroeste_confirmed, curve: true, points: true, legend: "right" %>
               </div>
               <!-- /.card-body -->
             </div>
