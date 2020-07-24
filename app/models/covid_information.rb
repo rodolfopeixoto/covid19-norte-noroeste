@@ -1,5 +1,8 @@
 class CovidInformation < ApplicationRecord
 
+
+  POSITION_INITIAL = 1
+
   paginates_per 22
 
   belongs_to :city
@@ -56,4 +59,70 @@ class CovidInformation < ApplicationRecord
        }
     end
   end
+
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(POSITION_INITIAL)
+
+    ActiveRecord::Base.transaction do
+      (2..spreadsheet.last_row).each do |index|
+        informations_attributes_hash = Hash[[header, spreadsheet.row(index)].transpose]
+        code_ibg = informations_attributes_hash['cod']
+        city_id = City.find_by(ibge_code: code_ibg.to_s)&.id
+        binding.pry if city_id.nil?
+        date_reference = informations_attributes_hash['date_reference']
+
+        informations_attributes_hash['heal'] = 0 if informations_attributes_hash['heal'].nil?
+
+        informations_attributes_hash.delete('cod')
+        informations_attributes_hash.delete('city')
+        informations_attributes_hash.delete('date_reference')
+
+        informations_attributes_hash_refactory = informations_attributes_hash.merge('city_id' => city_id, 'date_reference' => date_reference.to_date)
+
+        difference_data_reference(informations_attributes_hash_refactory)
+      end
+    end
+  end
+
+  def self.difference_data_reference(informations_attributes_hash)
+
+    information_persisted = CovidInformation.where(date_reference: informations_attributes_hash['date_reference'], city_id: informations_attributes_hash['city_id'])
+    return create!(informations_attributes_hash) if count.zero? && information_persisted.blank?
+
+    hospitalized = informations_attributes_hash['hospitalized'].nil? ? 0 : informations_attributes_hash['hospitalized']
+    heal = informations_attributes_hash['heal'].nil? ? 0 : informations_attributes_hash['heal']
+    home_isolations = informations_attributes_hash['home_isolation'].nil? ? 0 : informations_attributes_hash['home_isolation']
+    discarded = informations_attributes_hash['discarded'].nil? ? 0 : informations_attributes_hash['discarded']
+    deaths = informations_attributes_hash['deaths'].nil? ? 0 : informations_attributes_hash['deaths']
+    suspected = informations_attributes_hash['suspected'].nil? ? 0 : informations_attributes_hash['suspected']
+    confirmed = informations_attributes_hash['confirmed'].nil? ? 0 : informations_attributes_hash['confirmed']
+    positive_active = informations_attributes_hash['positive_active'].nil? ? 0 : informations_attributes_hash['positive_active']
+
+    create(
+      {
+        "suspected" => suspected,
+        "confirmed" => confirmed,
+        "home_isolation" => home_isolations,
+        "hospitalized" => hospitalized,
+        "deaths" => deaths,
+        "heal" => heal,
+        "discarded"=> discarded,
+        "date_reference"=> informations_attributes_hash['date_reference'],
+        "city_id" => informations_attributes_hash['city_id'],
+        "positive_active" => positive_active
+      }
+    )
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Roo::CSV.new(file.path)
+    when ".xls" then Roo::Excelx.new(file.path)
+    when ".xlsx" then Roo::Excelx.new(file.path)
+    else raise "Unknow file type: #{file.original_filename}"
+    end
+  end
+
+
 end

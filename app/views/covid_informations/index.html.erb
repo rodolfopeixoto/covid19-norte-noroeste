@@ -1,5 +1,44 @@
 <p id="notice"><%= notice %></p>
 
+<div class="col-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Importar Excel - Covid-19</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <%= form_tag import_covid_informations_path, role: "form" , multipart: true do |f| %>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <%= file_field_tag :file, class:"custom-file-input", id: "exampleInputFile", label: false %>
+                        <label class="custom-file-label" for="exampleInputFile">Escolher o arquivo</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                <%= submit_tag "Importar", class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+            </div>
+            <!-- /.card -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+
+
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Informações de cadastro do Covid</h3>
