@@ -50,6 +50,12 @@ class CovidInformationsController < ApplicationController
     end
   end
 
+
+  def import
+    CovidInformation.import(params[:file])
+    redirect_to root_url, notice: 'COVID-19 Information imported.'
+  end
+
   private
     def set_covid_information
       @covid_information = CovidInformation.find(params[:id])

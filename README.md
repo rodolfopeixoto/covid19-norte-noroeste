@@ -26,3 +26,20 @@ Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
   ```bash
    bundle exec rails server
   ```
+
+ ## Acesso
+
+  Painel Administrativo
+
+ http://localhost:3000/covid_informations
+
+### Criação de usuário
+
+```bash
+ bundle exec rails console
+```
+
+
+```bash
+ User.create(email: 'user@email.com', password: 'covid1234')
+```

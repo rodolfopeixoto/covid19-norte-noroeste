@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @total_hospitalized = City.includes(:covid_informations).map(&:covid_informations).map(&:last).sum(&:hospitalized)
     @total_discarded = City.includes(:covid_informations).map(&:covid_informations).map(&:last).sum(&:discarded)
     @total_heal = City.includes(:covid_informations).map(&:covid_informations).map(&:last).sum(&:heal)
+    @total_positive_active = City.includes(:covid_informations).map(&:covid_informations).map(&:last).sum(&:positive_active)
     @chart_cities_norte_confirmed = CovidInformation.chart_cities_norte_confirmed
     @chart_cities_noroeste_confirmed = CovidInformation.chart_cities_noroeste_confirmed
     @cases_deaths_and_confirmed = CovidInformation.cases_deaths_and_confirmed
