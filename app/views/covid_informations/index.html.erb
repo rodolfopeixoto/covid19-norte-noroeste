@@ -26,9 +26,14 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                <%= submit_tag "Importar", class: 'btn btn-primary' %>
+                <%= submit_tag "Importar os dados", class: 'btn btn-primary' %>
+                <br/>
+                <br/>
+             <%= link_to 'Download de uma planilha exemplo em excel', '/fixtures/example_excel_covid.xlsx' ,class: 'btn btn-primary' %>
+
                 </div>
               <% end %>
+
             </div>
             <!-- /.card -->
               </div>
