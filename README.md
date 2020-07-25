@@ -45,6 +45,24 @@ Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
 ```
 
 
+### Help
+
+Para gerar uma release você precisa adicionar no se `~/.zshrc` ou no `~/.bashrc` o código abaixo:
+```
+ new-tag() {
+   local folder=$(basename `pwd`)
+   echo "$folder-`date '+%Y%m%d%H%M%S'`"
+ }
+```
+
+depois usar o comando:
+
+```
+new-tag
+```
+Receberá algo assim: `covid-data-20200725154059` esse será o código do release
+
+
 ### Contribuidores
 
 Amanda Gregório, Pedro Rodrigues e Rodolfo Peixoto
