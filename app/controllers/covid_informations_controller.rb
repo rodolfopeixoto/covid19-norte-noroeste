@@ -1,20 +1,18 @@
 class CovidInformationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_covid_information, only: [:show, :edit, :update, :destroy]
+  before_action :set_covid_information, only: %i[show edit update destroy]
 
   def index
-    @covid_informations = CovidInformation.includes(:city).order("date_reference desc").page(params[:page])
+    @covid_informations = CovidInformation.includes(:city).order('date_reference desc').page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @covid_information = CovidInformation.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @covid_information = CovidInformation.new(covid_information_params)
@@ -50,18 +48,23 @@ class CovidInformationsController < ApplicationController
     end
   end
 
-
   def import
-    CovidInformation.import(params[:file])
-    redirect_to root_url, notice: 'COVID-19 Information imported.'
+    covid_valid, covid_errors = CovidInformation.import(params[:file])
+    if covid_valid
+      redirect_to covid_informations_path, notice: 'Planilha importada com sucesso'
+    else
+      @errors = covid_errors
+      redirect_to covid_informations_path
+    end
   end
 
   private
-    def set_covid_information
-      @covid_information = CovidInformation.find(params[:id])
-    end
 
-    def covid_information_params
-      params.require(:covid_information).permit(:date_reference, :suspected, :confirmed, :home_isolation, :hospitalized, :discarded, :deaths, :heal, :city_id)
-    end
+  def set_covid_information
+    @covid_information = CovidInformation.find(params[:id])
+  end
+
+  def covid_information_params
+    params.require(:covid_information).permit(:date_reference, :suspected, :confirmed, :home_isolation, :hospitalized, :discarded, :deaths, :heal, :city_id)
+  end
 end
