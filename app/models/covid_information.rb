@@ -67,9 +67,8 @@ class CovidInformation < ApplicationRecord
     ActiveRecord::Base.transaction do
       (2..spreadsheet.last_row).each do |index|
         informations_attributes_hash = Hash[[header, spreadsheet.row(index)].transpose]
-        code_ibg = informations_attributes_hash['cod']
-        city_id = City.find_by(ibge_code: code_ibg.to_s)&.id
-        binding.pry if city_id.nil?
+        code_ibge = informations_attributes_hash['cod'].to_i
+        city_id = City.find_by(ibge_code: code_ibge.to_s)&.id
         date_reference = informations_attributes_hash['date_reference']
 
         informations_attributes_hash['heal'] = 0 if informations_attributes_hash['heal'].nil?

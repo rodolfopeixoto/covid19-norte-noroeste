@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :covid_informations do
     collection { post :import }
   end
@@ -8,5 +7,5 @@ Rails.application.routes.draw do
   resources :informations do
     collection { post :import }
   end
-  root to: "home#index"
+  root to: 'home#index'
 end
