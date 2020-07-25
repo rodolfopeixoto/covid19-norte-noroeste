@@ -43,3 +43,8 @@ Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
 ```bash
  User.create(email: 'user@email.com', password: 'covid1234')
 ```
+
+
+### Contribuidores
+
+Amanda Gregório, Pedro Rodrigues e Rodolfo Peixoto
