@@ -24,6 +24,10 @@ Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
   ```
 
   ```bash
+   yarn install
+  ```  
+
+  ```bash
    bundle exec rails server
   ```
 
