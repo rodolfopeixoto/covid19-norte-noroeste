@@ -1,0 +1,25 @@
+version: "2"
+
+volumes:
+  db-data:
+    external: false
+
+services:
+  db:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+    image: postgres:9.3.20-alpine
+    volumes:
+      - db-data:/usr/local/pgsql/data
+
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    env_file: .env
+    command: "rails s -b 0.0.0.0"
+    depends_on:
+      - db
