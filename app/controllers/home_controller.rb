@@ -20,6 +20,6 @@ class HomeController < ApplicationController
     @region_noroeste = Region.confirmed_by_region_noroeste
     @suspected_noroeste = Region.suspected_noroeste
     @suspected_norte = Region.suspected_norte
-    @covid_date_current = CovidInformation.last.date_reference.strftime("%d/%m/%Y")
+    @covid_date_current = CovidInformation.maximum('date_reference').strftime("%d/%m/%Y")
   end
 end
