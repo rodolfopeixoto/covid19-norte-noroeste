@@ -13,7 +13,35 @@ Site Oficial: [AtlasNF-Covid19](http://atlasnf-covid19.com.br)
 Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
 
 
-## Executar
+## Executar (com Docker)
+
+  ```bash
+    docker-compose build app
+  ```
+
+  ```bash
+    docker-compose run app yarn install
+  ```
+
+  ```bash
+    docker-compose run app bundle exec rails db:setup
+  ```
+
+  ```bash
+    docker-compose run app bundle exec rails data_marco:create
+  ```
+
+  ```bash
+   docker-compose up
+  ```
+
+### Criação de usuário
+
+  ```bash
+    docker-compose run app bundle exec rails db:seed
+  ```
+
+## Executar (sem Docker)
 
   ```bash
     bundle exec rails db:setup
@@ -31,23 +59,23 @@ Utilizado Bootstrap 4 com [adminlte3](http://adminlte.io)
    bundle exec rails server
   ```
 
- ## Acesso
+### Criação de usuário
+
+  ```bash
+    bundle exec rails db:seed
+  ```
+
+## Acesso
 
   Painel Administrativo
 
  http://localhost:3000/covid_informations
 
-### Criação de usuário
-
-```bash
- bundle exec rails console
+#### Dados de login
 ```
-
-
-```bash
- User.create(email: 'user@email.com', password: 'covid1234')
+Email: user@email.com
+Senha: covid1234
 ```
-
 
 ### Help
 

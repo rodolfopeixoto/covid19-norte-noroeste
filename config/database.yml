@@ -1,5 +1,8 @@
 default: &default
   adapter: postgresql
+  host: <%= ENV["POSTGRES_HOST"] %>
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
@@ -9,5 +12,5 @@ development:
 production:
   <<: *default
   database: covid_data_production
-  username: covid_data
-  password: <%= ENV['COVID_DATA_DATABASE_PASSWORD'] %>
+  # username: covid_data
+  # password: <%= ENV['COVID_DATA_DATABASE_PASSWORD'] %>
