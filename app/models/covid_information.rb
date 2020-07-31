@@ -87,7 +87,7 @@ class CovidInformation < ApplicationRecord
   def self.difference_data_reference(informations_attributes_hash)
 
     information_persisted = CovidInformation.where(date_reference: informations_attributes_hash['date_reference'], city_id: informations_attributes_hash['city_id'])
-    return create!(informations_attributes_hash) if count.zero? && information_persisted.blank?
+    return if information_persisted.exists?
 
     hospitalized = informations_attributes_hash['hospitalized'].nil? ? 0 : informations_attributes_hash['hospitalized']
     heal = informations_attributes_hash['heal'].nil? ? 0 : informations_attributes_hash['heal']
