@@ -93,8 +93,3 @@ depois usar o comando:
 new-tag
 ```
 Receberá algo assim: `covid-data-20200725154059` esse será o código do release
-
-
-### Contribuidores
-
-Amanda Gregório, Pedro Rodrigues e Rodolfo Peixoto
