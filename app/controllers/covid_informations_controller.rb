@@ -19,7 +19,7 @@ class CovidInformationsController < ApplicationController
 
     respond_to do |format|
       if @covid_information.save
-        format.html { redirect_to @covid_information, notice: 'Covid information was successfully created.' }
+        format.html { redirect_to @covid_information, notice: 'Informações cadastradas com sucesso.' }
         format.json { render :show, status: :created, location: @covid_information }
       else
         format.html { render :new }
@@ -31,7 +31,7 @@ class CovidInformationsController < ApplicationController
   def update
     respond_to do |format|
       if @covid_information.update(covid_information_params)
-        format.html { redirect_to @covid_information, notice: 'Covid information was successfully updated.' }
+        format.html { redirect_to @covid_information, notice: 'Informações atualizadas com sucesso.' }
         format.json { render :show, status: :ok, location: @covid_information }
       else
         format.html { render :edit }
@@ -43,7 +43,7 @@ class CovidInformationsController < ApplicationController
   def destroy
     @covid_information.destroy
     respond_to do |format|
-      format.html { redirect_to covid_informations_url, notice: 'Covid information was successfully destroyed.' }
+      format.html { redirect_to covid_informations_url, notice: 'Informações removidas com sucesso.' }
       format.json { head :no_content }
     end
   end

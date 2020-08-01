@@ -43,7 +43,7 @@
           </li>
           <% if current_user %>
           <li class="nav-item">
-            <%= link_to 'Contato', root_path, class: 'nav-link' %>
+            <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link'  %>
           </li>
           <% end %>
         </ul>
@@ -77,7 +77,15 @@
     <section class="content">
       <div class="container">
         <div class="row">
-            <%= yield %>
+          <% if notice %>
+            <div class="col-12">
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <%= notice %>
+              </div>
+            </div>
+          <% end %>
+          <%= yield %>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

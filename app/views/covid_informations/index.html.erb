@@ -1,12 +1,11 @@
-<p id="notice"><%= notice %></p>
 <% if @errors %>
-<% @errors.each do |message| %>
-<div class="alert alert-danger alert-dismissible">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-  <h5><i class="icon fas fa-ban"></i> Erros na planilha!</h5>
-  <%= message %>
-</div>
-<% end %>
+  <% @errors.each do |message| %>
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5><i class="icon fas fa-ban"></i> Erros na planilha!</h5>
+      <%= message %>
+    </div>
+  <% end %>
 <% end %>
 
 <div class="col-12">
