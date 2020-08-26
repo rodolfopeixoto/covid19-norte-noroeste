@@ -7,7 +7,7 @@
 require("turbolinks").start()
 // require("@rails/activestorage").start()
 require("channels")
-require("jquery")
+require("jquery");
 require("cocoon-js");
 
 global.$ = global.jQuery = jQuery;
