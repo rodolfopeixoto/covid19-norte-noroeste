@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   resources :informations do
     collection { post :import }
   end
+
+  get 'contato', to: 'home#contact', as: :contact
+
   root to: 'home#index'
 end
