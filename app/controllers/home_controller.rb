@@ -22,4 +22,7 @@ class HomeController < ApplicationController
     @suspected_norte = Region.suspected_norte
     @covid_date_current = CovidInformation.maximum('date_reference').strftime("%d/%m/%Y")
   end
+
+  def contact
+  end
 end

@@ -1,44 +1,71 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Date reference:</strong>
-  <%= @covid_information.date_reference %>
-</p>
+<div class="card">
+  <div class="card-header border-0">
+    <h3 class="card-title">Info</h3>
+    <div class="card-tools">
+      <a href="#" class="btn btn-tool btn-sm">
+        <i class="fas fa-download"></i>
+      </a>
+      <a href="#" class="btn btn-tool btn-sm">
+        <i class="fas fa-bars"></i>
+      </a>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <strong>Id:</strong>
+          <%= @covid_information.id %>
+        </div>
+        <div class="col-3">
+          <strong>Data:</strong>
+          <%= @covid_information.date_reference %>
+        </div>
+        <div class="col-3">
+          <strong>Suspeitos:</strong>
+          <%= @covid_information.suspected %>
+        </div>
+        <div class="col-3">
+          <strong>Confirmados:</strong>
+          <%= @covid_information.confirmed %>
+        </div>
+        <div class="col-3">
+          <strong>Isolados em casa:</strong>
+          <%= @covid_information.home_isolation %>
+        </div>
+        <div class="col-3">
+          <strong>Hospitalizados:</strong>
+          <%= @covid_information.hospitalized %>
+        </div>
+        <div class="col-3">
+          <strong>Descartados:</strong>
+          <%= @covid_information.discarded %>
+        </div>
+        <div class="col-3">
+          <strong>Óbitos:</strong>
+          <%= @covid_information.deaths %>
+        </div>
+        <div class="col-3">
+          <strong>Curados:</strong>
+          <%= @covid_information.heal %>
+        </div>
+        <div class="col-3">
+          <strong>Positivos:</strong>
+          <%= @covid_information.positive_active %>
+        </div>
+        <div class="col-3">
+          <strong>Cidade:</strong>
+          <%= @covid_information.city.name %>
+        </div>
 
-<p>
-  <strong>Suspected:</strong>
-  <%= @covid_information.suspected %>
-</p>
+        <div class="col-12">
 
-<p>
-  <strong>Confirmed:</strong>
-  <%= @covid_information.confirmed %>
-</p>
-
-<p>
-  <strong>Home isolation:</strong>
-  <%= @covid_information.home_isolation %>
-</p>
-
-<p>
-  <strong>Hospitalized:</strong>
-  <%= @covid_information.hospitalized %>
-</p>
-
-<p>
-  <strong>Discarded:</strong>
-  <%= @covid_information.discarded %>
-</p>
-
-<p>
-  <strong>Deaths:</strong>
-  <%= @covid_information.deaths %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @covid_information.city.name %>
-</p>
-
-<%= link_to 'Editar', edit_covid_information_path(@covid_information) %> |
-<%= link_to 'Voltar', covid_informations_path %>
+          <%= link_to 'Editar', edit_covid_information_path(@covid_information), class: 'btn btn-primary' %>
+          <%= link_to 'Voltar', covid_informations_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
