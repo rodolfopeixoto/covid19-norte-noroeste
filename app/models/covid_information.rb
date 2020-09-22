@@ -50,6 +50,26 @@ class CovidInformation < ApplicationRecord
     end
   end
 
+  def self.chart_cities_norte_positive_active
+    cities = City.includes(:covid_informations, :region).where("cities.region_id = 2")
+     cities.map do |city|
+       {
+         name: city.name,
+         data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id} ).group("covid_informations.date_reference, covid_informations.positive_active").order("covid_informations.date_reference").pluck("covid_informations.date_reference, covid_informations.positive_active")
+       }
+    end
+  end
+
+  def self.chart_cities_noroeste_positive_active
+    cities = City.includes(:covid_informations, :region).where("cities.region_id = 1")
+     cities.map do |city|
+       {
+         name: city.name,
+         data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id} ).group("covid_informations.date_reference, covid_informations.positive_active").order("covid_informations.date_reference").pluck("covid_informations.date_reference, covid_informations.positive_active")
+       }
+    end
+  end
+
   def self.chart_cities_noroeste_confirmed
     cities = City.includes(:covid_informations, :region).where("cities.region_id = 1")
      cities.map do |city|
