@@ -1,6 +1,4 @@
 class CovidInformation < ApplicationRecord
-
-
   POSITION_INITIAL = 1
 
   paginates_per 22
@@ -9,74 +7,75 @@ class CovidInformation < ApplicationRecord
   # total confirmed por semana
   # result = conn.execute "SELECT SUM(confirmed) as total_by_week, date_trunc('week', CAST(date_reference AS DATE)) weekly FROM covid_informations GROUP BY weekly ORDER BY weekly;"
 
-  scope :regions_total_confirmed, ->() { CovidInformation.joins(:city).group("covid_informations.date_reference").order("covid_informations.date_reference").sum(:confirmed) }
-  scope :regions_total_suspected, ->() { CovidInformation.joins(:city).group("covid_informations.date_reference").order("covid_informations.date_reference").sum(:suspected) }
+  scope :regions_total_confirmed, -> { CovidInformation.joins(:city).group('covid_informations.date_reference').order('covid_informations.date_reference').sum(:confirmed) }
+  scope :regions_total_suspected, -> { CovidInformation.joins(:city).group('covid_informations.date_reference').order('covid_informations.date_reference').sum(:suspected) }
+  scope :remove_by_data, ->(date) { CovidInformation.where(date_reference: date).destroy_all }
 
   def self.sum_confirmed
-    CovidInformation.joins(:city).
-        group("covid_informations.date_reference").
-        order("covid_informations.date_reference").
-        sum(:confirmed)
+    CovidInformation.joins(:city)
+                    .group('covid_informations.date_reference')
+                    .order('covid_informations.date_reference')
+                    .sum(:confirmed)
   end
 
   def self.sum_deaths
-    CovidInformation.joins(:city).
-    group("covid_informations.date_reference").
-    order("covid_informations.date_reference").
-    sum(:deaths)
+    CovidInformation.joins(:city)
+                    .group('covid_informations.date_reference')
+                    .order('covid_informations.date_reference')
+                    .sum(:deaths)
   end
 
   def self.sum_suspected
-    CovidInformation.joins(:city).
-    group("covid_informations.date_reference").
-    order("covid_informations.date_reference").
-    sum(:suspected)
+    CovidInformation.joins(:city)
+                    .group('covid_informations.date_reference')
+                    .order('covid_informations.date_reference')
+                    .sum(:suspected)
   end
 
   def self.cases_deaths_and_confirmed
     [
-      { name: "Óbitos", data: sum_deaths },
+      { name: 'Óbitos', data: sum_deaths },
       { name: 'Confirmados', data: sum_confirmed }
     ]
   end
 
   def self.chart_cities_norte_confirmed
-    cities = City.includes(:covid_informations, :region).where("cities.region_id = 2")
-     cities.map do |city|
-       {
-         name: city.name,
-         data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id} ).group("covid_informations.date_reference, covid_informations.confirmed").order("covid_informations.date_reference").pluck("covid_informations.date_reference, covid_informations.confirmed")
-       }
+    cities = City.includes(:covid_informations, :region).where('cities.region_id = 2')
+    cities.map do |city|
+      {
+        name: city.name,
+        data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id }).group('covid_informations.date_reference, covid_informations.confirmed').order('covid_informations.date_reference').pluck('covid_informations.date_reference, covid_informations.confirmed')
+      }
     end
   end
 
   def self.chart_cities_norte_positive_active
-    cities = City.includes(:covid_informations, :region).where("cities.region_id = 2")
-     cities.map do |city|
-       {
-         name: city.name,
-         data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id} ).group("covid_informations.date_reference, covid_informations.positive_active").order("covid_informations.date_reference").pluck("covid_informations.date_reference, covid_informations.positive_active")
-       }
+    cities = City.includes(:covid_informations, :region).where('cities.region_id = 2')
+    cities.map do |city|
+      {
+        name: city.name,
+        data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id }).group('covid_informations.date_reference, covid_informations.positive_active').order('covid_informations.date_reference').pluck('covid_informations.date_reference, covid_informations.positive_active')
+      }
     end
   end
 
   def self.chart_cities_noroeste_positive_active
-    cities = City.includes(:covid_informations, :region).where("cities.region_id = 1")
-     cities.map do |city|
-       {
-         name: city.name,
-         data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id} ).group("covid_informations.date_reference, covid_informations.positive_active").order("covid_informations.date_reference").pluck("covid_informations.date_reference, covid_informations.positive_active")
-       }
+    cities = City.includes(:covid_informations, :region).where('cities.region_id = 1')
+    cities.map do |city|
+      {
+        name: city.name,
+        data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id }).group('covid_informations.date_reference, covid_informations.positive_active').order('covid_informations.date_reference').pluck('covid_informations.date_reference, covid_informations.positive_active')
+      }
     end
   end
 
   def self.chart_cities_noroeste_confirmed
-    cities = City.includes(:covid_informations, :region).where("cities.region_id = 1")
-     cities.map do |city|
-       {
-         name: city.name,
-         data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id} ).group("covid_informations.date_reference, covid_informations.confirmed").order("covid_informations.date_reference").pluck("covid_informations.date_reference, covid_informations.confirmed")
-       }
+    cities = City.includes(:covid_informations, :region).where('cities.region_id = 1')
+    cities.map do |city|
+      {
+        name: city.name,
+        data: CovidInformation.includes(:city).where(covid_informations: { city_id: city.id }).group('covid_informations.date_reference, covid_informations.confirmed').order('covid_informations.date_reference').pluck('covid_informations.date_reference, covid_informations.confirmed')
+      }
     end
   end
 
@@ -105,7 +104,6 @@ class CovidInformation < ApplicationRecord
   end
 
   def self.difference_data_reference(informations_attributes_hash)
-
     information_persisted = CovidInformation.where(date_reference: informations_attributes_hash['date_reference'], city_id: informations_attributes_hash['city_id'])
     return if information_persisted.exists?
 
@@ -120,28 +118,26 @@ class CovidInformation < ApplicationRecord
 
     create(
       {
-        "suspected" => suspected,
-        "confirmed" => confirmed,
-        "home_isolation" => home_isolations,
-        "hospitalized" => hospitalized,
-        "deaths" => deaths,
-        "heal" => heal,
-        "discarded"=> discarded,
-        "date_reference"=> informations_attributes_hash['date_reference'],
-        "city_id" => informations_attributes_hash['city_id'],
-        "positive_active" => positive_active
+        'suspected' => suspected,
+        'confirmed' => confirmed,
+        'home_isolation' => home_isolations,
+        'hospitalized' => hospitalized,
+        'deaths' => deaths,
+        'heal' => heal,
+        'discarded' => discarded,
+        'date_reference' => informations_attributes_hash['date_reference'],
+        'city_id' => informations_attributes_hash['city_id'],
+        'positive_active' => positive_active
       }
     )
   end
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when ".csv" then Roo::CSV.new(file.path)
-    when ".xls" then Roo::Excelx.new(file.path)
-    when ".xlsx" then Roo::Excelx.new(file.path)
+    when '.csv' then Roo::CSV.new(file.path)
+    when '.xls' then Roo::Excelx.new(file.path)
+    when '.xlsx' then Roo::Excelx.new(file.path)
     else raise "Unknow file type: #{file.original_filename}"
     end
   end
-
-
 end
