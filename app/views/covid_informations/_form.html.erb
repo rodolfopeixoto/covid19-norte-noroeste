@@ -1,70 +1,78 @@
-
 <div class="col-12">
   <div class="card card-info">
     <div class="card-header">
       <h3 class="card-title">Covid-19 formulário</h3>
 
       <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus" class="svg-inline--fa fa-minus fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-minus"></i> -->
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus" class="svg-inline--fa fa-minus fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+          </svg><!-- <i class="fas fa-minus"></i> -->
         </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg=""><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg><!-- <i class="fas fa-times"></i> --></button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path>
+          </svg><!-- <i class="fas fa-times"></i> --></button>
       </div>
     </div>
     <div class="card-body">
 
 
       <%= simple_form_for(@covid_information, data: { controller: 'validation' }) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label>Data de Referência</label>
-        <%= f.input :date_reference, as: :date, label: false, input_html: { required: true, class: "form-control" } %>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Data de Referência</label>
+          <%= f.input :date_reference, as: :date, label: false, input_html: { required: true, class: "form-control" } %>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label>Suspeitos</label>
+          <%= f.input :suspected, label: false, input_html: { value: 0, required: true, class: "form-control" } %>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label>Confirmados</label>
+          <%= f.input :confirmed, label: false, input_html: { value: 0, required: true } %>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Isolamento domiciliar</label>
+          <%= f.input :home_isolation, label: false, input_html: { value: 0, required: true } %>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Hospitalizado</label>
+          <%= f.input :hospitalized, label: false, input_html: { value: 0, required: true } %>
+        </div>
+
+        <div class="form-group  col-md-2">
+          <label>Descartados</label>
+          <%= f.input :discarded, label: false, input_html: { value: 0, required: true } %>
+        </div>
+        <div class="form-group  col-md-2">
+          <label>Óbitos</label>
+          <%= f.input :deaths, label: false, input_html: { value: 0, required: true } %>
+        </div>
+        <div class="form-group  col-md-2">
+          <label>Curados</label>
+          <%= f.input :heal, label: false, input_html: { value: 0, required: true } %>
+        </div>
+
+        <div class="form-group  col-md-2">
+          <label>Positivos ativos</label>
+          <%= f.input :positive_active, label: false, input_html: { value: 0, required: true } %>
+        </div>
+
+        <div class="form-group  col-md-6">
+          <label>Cidades</label>
+          <%= f.association :city, label: false, input_html: { value: 0, required: true } %>
+        </div>
       </div>
 
-      <div class="form-group col-md-2">
-        <label>Suspeitos</label>
-        <%= f.input :suspected, label: false, input_html: { value: 0, required: true, class: "form-control" } %>
+      <div class="form-group">
+        <%= f.button :submit, 'Cadastrar', class:"btn btn-primary btn-raised" %>
       </div>
-
-      <div class="form-group col-md-2">
-        <label>Confirmados</label>
-        <%= f.input :confirmed, label: false, input_html: { value: 0, required: true } %>
-      </div>
-
-      <div class="form-group col-md-3">
-        <label>Isolamento domiciliar</label>
-        <%= f.input :home_isolation, label: false, input_html: { value: 0, required: true } %>
-      </div>
-      <div class="form-group col-md-2">
-        <label>Hospitalizado</label>
-        <%= f.input :hospitalized, label: false, input_html: { value: 0, required: true } %>
-      </div>
-
-    <div class="form-group  col-md-2">
-      <label>Descartados</label>
-      <%= f.input :discarded, label: false, input_html: { value: 0, required: true } %>
-    </div>
-    <div class="form-group  col-md-2">
-      <label>Óbitos</label>
-      <%= f.input :deaths, label: false, input_html: { value: 0, required: true } %>
-    </div>
-    <div class="form-group  col-md-2">
-      <label>Curados</label>
-      <%= f.input :heal, label: false, input_html: { value: 0, required: true } %>
-    </div>
-
-    <div class="form-group  col-md-6">
-      <label>Cidades</label>
-      <%= f.association :city, label: false, input_html: { value: 0, required: true } %>
-    </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.button :submit, 'Cadastrar', class:"btn btn-primary btn-raised" %>
-    </div>
-  <% end %>
+      <% end %>
 
 
     </div>

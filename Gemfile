@@ -25,6 +25,7 @@ gem 'groupdate'
 gem 'roo', '~> 2.8.0'
 gem 'rubocop'
 gem 'simple_form'
+gem 'ransack'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

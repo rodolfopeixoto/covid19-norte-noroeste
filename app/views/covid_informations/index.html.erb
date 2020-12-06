@@ -1,53 +1,54 @@
 <p id="notice"><%= notice %></p>
-<% if @errors %>
-<% @errors.each do |message| %>
-<div class="alert alert-danger alert-dismissible">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-  <h5><i class="icon fas fa-ban"></i> Erros na planilha!</h5>
-  <%= message %>
-</div>
-<% end %>
-<% end %>
-
-<div class="col-12">
-  <!-- general form elements -->
-  <div class="card card-primary">
-    <div class="card-header">
-      <h3 class="card-title">Importar Excel - Covid-19</h3>
-    </div>
-    <!-- /.card-header -->
-    <!-- form start -->
-    <%= form_tag import_covid_informations_path, role: "form" , multipart: true do |f| %>
-    <div class="card-body">
-      <div class="form-group">
-        <label for="filename_import_covid_information">Arquivo</label>
-        <div class="input-group">
-          <div class="custom-file">
-            <%= file_field_tag :file, class:"custom-file-input", id: "filename_import_covid_information", label: false %>
-            <label class="custom-file-label" id="label_import_covid_information" for="filename_import_covid_information">Escolher o arquivo</label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.card-body -->
-
-    <div class="card-footer">
-      <%= submit_tag "Importar os dados", class: 'btn btn-primary',
-      data: { disable_with: "<i class='fa fa-refresh fa-spin'>
-      </i> Submitting Changes..."} %>
-      <br />
-      <br />
-      <%= link_to 'Download de uma planilha exemplo em excel', '/fixtures/example_excel_covid.xlsx' ,class: 'btn btn-primary' %>
-
+  <% if @errors %>
+    <% @errors.each do |message| %>
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5><i class="icon fas fa-ban"></i> Erros na planilha!</h5>
+      <%= message %>
     </div>
     <% end %>
+  <% end %>
 
+  <div class="col-12">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Importar Excel - Covid-19</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <%= form_tag import_covid_informations_path, role: "form" , multipart: true do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="filename_import_covid_information">Arquivo</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <%= file_field_tag :file, class:"custom-file-input", id: "filename_import_covid_information", label: false %>
+                <label class="custom-file-label" id="label_import_covid_information" for="filename_import_covid_information">Escolher o arquivo</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+          <%= submit_tag "Importar os dados", class: 'btn btn-primary',
+          data: { disable_with: "<i class='fa fa-refresh fa-spin'>
+          </i> Submitting Changes..."} %>
+          <br />
+          <br />
+          <%= link_to 'Download de uma planilha exemplo em excel', '/fixtures/example_excel_covid.xlsx' ,class: 'btn btn-primary' %>
+
+        </div>
+      <% end %>
+
+    </div>
+    <!-- /.card -->
   </div>
-  <!-- /.card -->
-</div>
 <!-- /.card-body -->
 </div>
 <!-- /.card -->
+
 
 
 
@@ -59,16 +60,36 @@
   <!-- /.card-header -->
   <div class="card-body">
     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <div class="dataTables_length" id="example1_length">
             <%= link_to 'Cadastrar Informação', new_covid_information_path, class: 'btn btn-outline-primary' %>
           </div>
         </div>
+
         <div class="col-sm-12 col-md-6">
-          <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label></div>
+
+
+          <%= search_form_for @q do |f| %>
+
+            Busca por data de Referência
+            <%= f.search_field :date_reference_eq %>
+            <%= f.submit %>
+          <% end %>
+
+          <%= search_form_for @q do |f| %>
+
+            Busca por data Cidade
+            <%= f.search_field :city_name_cont %>
+            <%= f.submit %>
+          <% end %>
+
         </div>
+
+
       </div>
+
       <div class="row">
         <div class="col-sm-12">
           <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
